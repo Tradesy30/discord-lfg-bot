@@ -1,0 +1,29 @@
+{
+  "name": "discord-lfg-bot",
+  "version": "1.0.0",
+  "description": "A Discord bot for creating LFG posts for gaming activities",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "deploy-commands": "node src/deploy-commands.js",
+    "delete-commands": "node src/delete-commands.js"
+  },
+  "keywords": [
+    "discord",
+    "lfg",
+    "bot",
+    "discord.js"
+  ],
+  "author": "Christopher Rodriguez",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "discord.js": "^14.19.3",
+    "dotenv": "^16.5.0",
+    "ms": "^2.1.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
