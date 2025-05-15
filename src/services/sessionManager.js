@@ -3,6 +3,7 @@ class SessionManager {
     constructor() {
         this.sessions = new Map();
         this.activeLFG = new Map();
+        this.userLFGMap = new Map(); // Tracks which users have active LFGs
         this.sessionTimeout = 10 * 60 * 1000; // 10 minutes
     }
 
@@ -38,8 +39,22 @@ class SessionManager {
         }
     }
 
+    // Check if user has an active LFG
+    userHasActiveLFG(userId) {
+        return this.userLFGMap.has(userId);
+    }
+
+    // Get message ID of user's active LFG
+    getUserActiveLFG(userId) {
+        return this.userLFGMap.get(userId);
+    }
+
     createLFG(messageId, data) {
         this.activeLFG.set(messageId, data);
+        // Track which user created this LFG
+        if (data.host && data.host.id) {
+            this.userLFGMap.set(data.host.id, messageId);
+        }
     }
 
     getLFG(messageId) {
@@ -56,7 +71,23 @@ class SessionManager {
     }
 
     deleteLFG(messageId) {
+        const lfg = this.activeLFG.get(messageId);
+        if (lfg && lfg.host && lfg.host.id) {
+            // Remove the user's LFG tracking when post is deleted
+            this.userLFGMap.delete(lfg.host.id);
+        }
         this.activeLFG.delete(messageId);
+    }
+
+    // Admin function to clear a user's LFG lock
+    clearUserLFGLock(userId) {
+        if (this.userLFGMap.has(userId)) {
+            // Note: This doesn't delete the actual LFG post,
+            // just removes the user's association with it
+            this.userLFGMap.delete(userId);
+            return true;
+        }
+        return false;
     }
 }
 
