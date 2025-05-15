@@ -39,14 +39,14 @@ Christopher Rodriguez
    # Bot configuration
    TOKEN=your_discord_bot_token
    CLIENT_ID=your_bot_client_id
-   GUILD_ID=your_test_server_id
+   GUILD_ID=your__server_id
 
    # Role IDs for different activities
-   ROLE_ID_RAID=123456789012345678
-   ROLE_ID_NIGHTFALL=123456789012345678
-   ROLE_ID_TRIALS=123456789012345678
-   ROLE_ID_CRUCIBLE=123456789012345678
-   ROLE_ID_OTHER=123456789012345678
+   ROLE_ID_RAID=your_role_id
+   ROLE_ID_NIGHTFALL=your_role_id
+   ROLE_ID_TRIALS=your_role_id
+   ROLE_ID_CRUCIBLE=your_role_id
+   ROLE_ID_OTHER=your_role_id
    ```
 
 4. **Register slash commands**
